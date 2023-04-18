@@ -48,11 +48,13 @@
         let subt = (qnt) =>{
             let elem = document.getElementById("quantity");
             let quantity = elem.innerHTML;
-            if(quantity>= 0){
-                elem.innerHTML = quantity - qnt;
-            };
+            
             if(quantity == 0 || quantity <0){
                 elem.innerHTML = 0;
+            }else if(quantity == 1){
+
+            }else{
+                elem.innerHTML = quantity - qnt;
             }
 
             
@@ -64,6 +66,8 @@
             let quantity = +data.innerHTML;
             if(data.innerHTML == 0 || data.innerHTML < 0){
                 data.innerHTML = 0;
+            }else if(data.innerHTML < 10){
+                
             }else{
                 data.innerHTML = quantity - 10;
             }
