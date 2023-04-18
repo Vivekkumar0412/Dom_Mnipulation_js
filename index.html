@@ -7,7 +7,70 @@
     <title>DOM MANIPULATION</title>
 </head>
 <body>
-    <h1>I got a 4 cr pakage</h1>
+    
+    <h1>sales data</h1>
+    <h3 id="name1">Seller : Jack Sparrow</h3>
+    <h3 id="sales1">Total sale :
+        <span id="quantity">10</span>
+    </h3>
+    <button id="btn1" onclick="add1(1)">ADD 1</button>
+    <button id="btn2" onclick="add2(5)">ADD 2</button>
+    <button id="btn3" onclick="subt(2)">- 2</button>
+    <button id="btn4" >- 12</button>
+
+    
     <script src="index.js"></script>
+    <script>
+        let nameelem = document.getElementById("name1");
+        console.log(nameelem);
+
+
+        let add1 = (qnt)=>{
+            let elem = document.getElementById("quantity");
+            let quantity = parseInt(elem.innerHTML);
+            console.log(quantity);
+            
+                elem.innerHTML = quantity+ qnt;
+                
+            
+        };
+
+        let add2=(qnt)=>{
+            let elem = document.getElementById("quantity");
+            let quantity = parseInt(elem.innerHTML);
+            
+                elem.innerHTML = quantity+ qnt;
+                
+
+
+        };
+
+        let subt = (qnt) =>{
+            let elem = document.getElementById("quantity");
+            let quantity = elem.innerHTML;
+            if(quantity>= 0){
+                elem.innerHTML = quantity - qnt;
+            };
+            if(quantity == 0 || quantity <0){
+                elem.innerHTML = 0;
+            }
+
+            
+        };
+
+        let btn4 = document.getElementById("btn4");
+        btn4.addEventListener("click",()=>{
+            let data = document.getElementById("quantity");
+            let quantity = +data.innerHTML;
+            if(data.innerHTML == 0 || data.innerHTML < 0){
+                data.innerHTML = 0;
+            }else{
+                data.innerHTML = quantity - 10;
+            }
+            
+
+        })
+        console.log(btn4)
+    </script>
 </body>
 </html>
