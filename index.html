@@ -13,10 +13,18 @@
     <h3 id="sales1">Total sale :
         <span id="quantity">10</span>
     </h3>
+    <h2 id="data"></h2>
+    <button id="addname">Add Name</button>
+    <button id="clearr">CLEAR</button>
     <button id="btn1" onclick="add1(1)">ADD 1</button>
     <button id="btn2" onclick="add2(5)">ADD 2</button>
     <button id="btn3" onclick="subt(2)">- 2</button>
-    <button id="btn4" >- 12</button>
+    <button id="btn4" >- 10</button>
+
+
+    <div id="name_list"></div>
+    <button id="showname">Show Names</button>
+    <button id="hidename">Hide Names</button>
 
     
     <script src="index.js"></script>
@@ -52,7 +60,7 @@
             if(quantity == 0 || quantity <0){
                 elem.innerHTML = 0;
             }else if(quantity == 1){
-
+                alert(`The qunatity is ${quantity}`);
             }else{
                 elem.innerHTML = quantity - qnt;
             }
@@ -67,7 +75,7 @@
             if(data.innerHTML == 0 || data.innerHTML < 0){
                 data.innerHTML = 0;
             }else if(data.innerHTML < 10){
-                
+                alert(`The qunatity is ${quantity}`);
             }else{
                 data.innerHTML = quantity - 10;
             }
@@ -81,7 +89,75 @@
         console.log(str2);
         console.log(typeof(str))
         console.log(typeof(str2))
-        console.log(parseInt("k9"))
+        console.log(parseInt("k9"));
+
+
+        let persons = [
+            {name : "Vivek kumar", age : 24, city : "Gaya"},
+            {name : "Pranav Gupta", age : 40, city : "sirsa"},
+            {name : "Sarthak Sharma", age : 44, city : "karnal"}
+        ];
+
+        let btn3 = document.getElementById("addname");
+        btn3.addEventListener("click",()=>{
+            let d = document.getElementById("data");
+            let str = `Name : ${persons[0].name}`;
+            str+= ` age : ${persons[0].age}`;
+            str+= ` city : ${persons[0].city}`;
+
+            d.innerHTML = str;
+        })
+        let clearAll =()=>{
+            document.getElementById("data").innerHTML = "";
+        };
+
+        let clear = document.getElementById("clearr");
+        clear.addEventListener("click",clearAll);
+
+        let names = ["Vivek","Pranav","Sarthak","Sunil"];
+
+        let showname = document.getElementById("showname");
+        let hidename = document.getElementById("hidename");
+
+        let showName = ()=>{
+            let name_list = document.getElementById("name_list");
+            let map_names = names.map((name)=>{
+                return `<li>${name}</li>`
+            });
+
+            let final_name = `<ul>${map_names.join("")}</ul>`;
+            name_list.innerHTML = final_name;
+        };
+
+        showname.addEventListener("click",showName);
+        hidename.addEventListener("click",()=>{
+            let name_list = document.getElementById("name_list");
+            name_list.innerHTML = ""; 
+        });
+
+
+        let persons2 = [
+            {name : "Vivek kumar", age : 24, city : "Gaya"},
+            {name : "Pranav Gupta", age : 40, city : "sirsa"},
+            {name : "Sarthak Sharma", age : 44, city : "karnal"}
+        ];
+
+        let d = document.createElement("div");
+        d.setAttribute("class","d");
+        document.body.appendChild(d);
+
+        let new_person = persons2.map((elem)=>{
+            let str = "";
+            str+= `Name is ${elem.name} age is ${elem.age} he is from ${elem.city}`;
+            return str;
+        });
+
+        console.log(new_person);
+        for(let i = 0; i<new_person.length;i++){
+            let str =new_person[i];
+            d.append(str);
+
+        }
     </script>
 </body>
 </html>
