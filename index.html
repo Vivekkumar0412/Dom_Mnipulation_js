@@ -5,6 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOM MANIPULATION</title>
+    <style>
+        .changecolor{
+            background-color: red;
+            color: black;
+            /* text-align: center; */
+        }table{
+            border: 2px solid red;
+        }table td{
+            border: 1px solid black;
+        }table th{
+            background-color: cyan;
+        }
+    </style>
 </head>
 <body>
     
@@ -14,7 +27,9 @@
         <span id="quantity">10</span>
     </h3>
     <h2 id="data"></h2>
-    <button id="addname">Add Name</button>
+    <button id="change" class="c">CHANGE COLOR</button>
+    <button id="remove_color" class="c">REMOVE COLOR</button>
+    <button id="addname" class="c">Add Name</button>
     <button id="clearr">CLEAR</button>
     <button id="btn1" onclick="add1(1)">ADD 1</button>
     <button id="btn2" onclick="add2(5)">ADD 2</button>
@@ -25,10 +40,36 @@
     <div id="name_list"></div>
     <button id="showname">Show Names</button>
     <button id="hidename">Hide Names</button>
+    <h2>STUDENT'S DATA</h2>
+    <div id="tb"></div>
+    <button id="show_table">SHOW TABLE</button>
 
+    <h1>I GOT A PAKAGE OF 4 CR ! </h1>
+    <div id="show" class="c"></div>
+    <button id="show_data" class="c">SHOW DATA</button>
+    <button id="sort_by_value" class="c">sort_by_value</button>
+    <div id="check" class="c"></div>
     
     <script src="index.js"></script>
     <script>
+
+        let change = document.getElementById("change");
+        change.addEventListener("click",()=>{
+            let name1 = document.getElementById("name1");
+            let sales1 = document.getElementById("sales1");
+            name1.setAttribute("class","changecolor");
+            sales1.setAttribute("class","changecolor");
+
+
+        });
+
+        let remove_color = document.getElementById("remove_color");
+        remove_color.addEventListener("click",()=>{
+            let name1 = document.getElementById("name1");
+            let sales1 = document.getElementById("sales1");
+            name1.setAttribute("class","");
+            sales1.setAttribute("class","");
+        })
         let nameelem = document.getElementById("name1");
         console.log(nameelem);
 
@@ -104,6 +145,7 @@
             let str = `Name : ${persons[0].name}`;
             str+= ` age : ${persons[0].age}`;
             str+= ` city : ${persons[0].city}`;
+            d.setAttribute("class","changecolor")
 
             d.innerHTML = str;
         })
@@ -125,7 +167,7 @@
                 return `<li>${name}</li>`
             });
 
-            let final_name = `<ul>${map_names.join("")}</ul>`;
+            let final_name = `<ul class = "changecolor">${map_names.join("")}</ul>`;
             name_list.innerHTML = final_name;
         };
 
@@ -143,21 +185,57 @@
         ];
 
         let d = document.createElement("div");
+        let made_btn = document.createElement("button");
         d.setAttribute("class","d");
         document.body.appendChild(d);
+        document.body.appendChild(made_btn);
+        made_btn.innerHTML = "self_made";
 
         let new_person = persons2.map((elem)=>{
             let str = "";
-            str+= `Name is ${elem.name} age is ${elem.age} he is from ${elem.city}`;
+            str+= `<li>Name is ${elem.name} age is ${elem.age} he is from ${elem.city}</li>`;
             return str;
         });
+        let new_person1 = `<ul><h3>${new_person.join("")}</h3></ul>`;
 
-        console.log(new_person);
-        for(let i = 0; i<new_person.length;i++){
-            let str =new_person[i];
-            d.append(str);
+        console.log(new_person1);
+        d.innerHTML = new_person1;
 
-        }
+        made_btn.addEventListener("click",()=>{
+            d.innerHTML = "";
+        });
+        made_btn.addEventListener("dblclick",()=>{
+            d.innerHTML = new_person1;
+        })
+
+        let data2 = document.getElementsByClassName("c");
+        console.log(data2);
+
+        let marks = [
+            {name : "Vivek Kumar", Maths : 90, English : 99, Computer : 98},
+            {name : "sarthak sharma", Maths : 80, English : 89, Computer : 70},
+            {name : "pranav gupta", Maths : 99, English : 60, Computer : 87},
+            {name : "shreyansh ranjan", Maths : 70, English : 56, Computer : 45},
+            {name : "sunil modi", Maths : 100, English : 56, Computer : 77},
+        ];
+
+        let show_table = document.getElementById("show_table");
+        // console.log(show_table);
+        show_table.addEventListener("click",()=>{
+            let tb = document.getElementById("tb");
+            let tr =  `<tr><th>Name</th> <th>Maths</th> <th>English</th> <th>Computers</th></tr>`;
+
+            let td = marks.map((elem)=>{
+                let str = "";
+                str += `<tr><td>${elem.name}</td> <td>${elem.Maths}</td> <td>${elem.English}</td> <td>${elem.Computer}</td></tr>`;
+                return str;
+            });
+
+            let list = `<table>${tr} ${td.join("")}</table>`;
+            console.log(list);
+            tb.innerHTML = list;
+        });
+
     </script>
 </body>
 </html>
